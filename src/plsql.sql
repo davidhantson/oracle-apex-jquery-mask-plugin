@@ -4,19 +4,19 @@ PROCEDURE load_libraries(
 BEGIN
   ---------------------------------------  VENDOR  ---------------------------------------
   apex_javascript.add_library(
-    p_name                    => 'jquery.mask.min',       -- jquery.mask.min.js
-    p_directory               => p_plugin.file_prefix    -- ≙ #PLUGIN_FILES#
+    p_name        => 'jquery.mask.min',       -- jquery.mask.min.js
+    p_directory   => p_plugin.file_prefix     -- ≙ #PLUGIN_FILES#
   );
 
   ---------------------------------------  PLUGIN  ---------------------------------------
   apex_javascript.add_library(
-    p_name                    => 'apex.jquery.mask',      -- apex.jquery.mask.js
-    p_directory               => p_plugin.file_prefix    -- ≙ #PLUGIN_FILES#
+    p_name        => 'apex.jquery.mask',      -- apex.jquery.mask.js
+    p_directory   => p_plugin.file_prefix     -- ≙ #PLUGIN_FILES#
   );
 
   apex_css.add_file(
-    p_name       => 'apex.jquery.mask',                   -- apex.jquery.mask.css
-    p_directory  => p_plugin.file_prefix                 -- ≙ #PLUGIN_FILES#
+    p_name       => 'apex.jquery.mask',       -- apex.jquery.mask.css
+    p_directory  => p_plugin.file_prefix      -- ≙ #PLUGIN_FILES#
   );
 END load_libraries;
 
