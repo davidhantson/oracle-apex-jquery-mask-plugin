@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <title>APEX jQuery Mask Plugin – Dev sandbox</title>
+
+  <!-- Vite injecteert JS + CSS automatisch tijdens npm run dev (HMR) -->
+</head>
+<body>
+
+  <h1>APEX jQuery Mask Plugin - test</h1>
+
+  <!-- Simuleer een APEX-item -->
+  <div
+    class="t-Form-fieldContainer rel-col t-Form-fieldContainer--stretchInputs lto140257071671603702_0 apex-item-wrapper apex-item-wrapper--has-placeholder apex-item-wrapper--text-field"
+    id="P1_FORMAT_MASKED_CONTAINER">
+    <div class="t-Form-labelContainer col col-2">
+      <label for="P1_FORMAT_MASKED" id="P1_FORMAT_MASKED_LABEL" class="t-Form-label">Insznummer 1</label>
+    </div>
+    <div class="t-Form-inputContainer col col-8">
+      <div class="t-Form-itemWrapper"><input type="text" id="P1_FORMAT_MASKED" name="P1_FORMAT_MASKED"
+          placeholder="00000-000-00" class="text_field apex-item-text" value="" size="32" maxlength="13"
+          data-trim-spaces="NONE"></div><span id="P1_FORMAT_MASKED_error_placeholder" class="a-Form-error"
+        data-template-id="328070876829912166_ET"></span>
+    </div>
+  </div>
+
+  <div
+    class="t-Form-fieldContainer rel-col t-Form-fieldContainer--stretchInputs lto140257071671603702_0 apex-item-wrapper apex-item-wrapper--has-placeholder apex-item-wrapper--text-field"
+    id="P1_MASK_INSZ_CONTAINER">
+    <div class="t-Form-labelContainer col col-2">
+      <label for="P1_MASK_INSZ" id="P1_MASK_INSZ_LABEL" class="t-Form-label">Insznummer 2</label>
+    </div>
+    <div class="t-Form-inputContainer col col-8">
+      <div class="t-Form-itemWrapper"><input type="text" id="P1_MASK_INSZ" name="P1_MASK_INSZ"
+          placeholder="00000-000-00" class="text_field apex-item-text" value="" size="32" maxlength="13"
+          data-trim-spaces="NONE"></div><span id="P1_MASK_INSZ_error_placeholder" class="a-Form-error"
+        data-template-id="328070876829912166_ET"></span>
+    </div>
+  </div>
+
+  <!-- de originele lib-css mee laten laden -->
+  <link rel="stylesheet" href="/dist/apex.jquery.mask.css">
+  
+
+  <script type="module">
+    import { render } from '/src/apex.jquery.mask.js';
+    
+    /** 
+     * Fake “params” – precies wat je straks uit PL/SQL als JSON doorgeeft  
+     * this is in dit geval een dynamic action met onderstaand formaat
+     * Pas vooral attribute01 ...02 ... aan zoals je die in plsql doorgeeft
+    */
+    render.call({
+      triggeringElement: document,
+      affectedElements: apex.jQuery('#P1_FORMAT_MASKED,#P1_MASK_INSZ'),
+      browserEvent: 'load',
+      data: undefined,
+      resumeCallback: undefined,
+      action: {
+        'name': 'Mask INSZ',
+        'eventResult': true,
+        'conditionElement': null,
+        'conditionType': null,
+        'conditionExpression': null,
+        'executeOnPageInit': true,
+        'stopExecutionOnError': true,
+        'action': 'PLUGIN_BE.EBISON.APEX.JQUERY.MASK',
+        'affectedElementsType': 'ITEM',
+        'affectedRegionId': null,
+        'affectedElements': 'P1_FORMAT_MASKED,P1_MASK_INSZ',
+        'ajaxIdentifier': null,
+        'attribute01': '000000-000-00',
+        'attribute02': null,
+        'attribute03': '1',
+        'attribute04': null,
+        'attribute05': null,
+        'attribute06': null,
+        'attribute07': null,
+        'attribute08': null,
+        'attribute09': null,
+        'attribute10': null,
+        'attribute11': null,
+        'attribute12': null,
+        'attribute13': null,
+        'attribute14': null,
+        'attribute15': null
+      }
+    });
+  </script>
+</body>
+</html>

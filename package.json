@@ -1,0 +1,27 @@
+{
+  "name": "apex-jquery-mask-plugin",
+  "version": "0.3.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k -n \"dev,build,zip\" -c \"cyan,magenta,green\" \"npm:vite\" \"npm:build:watch\" \"npm:watch-zip\"",
+    "vite": "vite",
+    "build:watch": "vite build --watch --mode development --minify false",
+    "build": "rimraf dist plugin_files.zip && vite build && npm run zip",
+    "zip": "node ./zip-plugin-files.js",
+    "watch-zip": "chokidar \"dist/**\" -c \"npm run zip\""
+  },
+  "dependencies": {
+    "jquery-mask-plugin": "^1.14.16"
+  },
+  "devDependencies": {
+    "c8": "^8.0.1",
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^9.1.2",
+    "jquery": "^3.7.1",
+    "requirejs": "^2.3.7",
+    "rimraf": "^5.0.0",
+    "sass": "^1.77.0",
+    "vite": "^5.0.0",
+    "vite-plugin-static-copy": "^3.0.2"
+  }
+}
