@@ -33,6 +33,10 @@ BEGIN
   l_result.attribute_02 := p_dynamic_action.attribute_02; -- Set Reverse 1 or NULL
   l_result.attribute_03 := p_dynamic_action.attribute_03; -- Set Clear if not matched 1 or NULL
 
+  l_result.attribute_04 := p_dynamic_action.attribute_04; -- Advanced Mode (Y or N)
+  l_result.attribute_05 := p_dynamic_action.attribute_05; -- Mask JS Expression
+  l_result.attribute_06 := p_dynamic_action.attribute_06; -- Additional Options JS Object
+
   load_libraries(p_plugin);
 
   l_result.javascript_function := 'apexJQueryMask.render';

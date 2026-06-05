@@ -22,23 +22,23 @@ wwv_flow_imp.import_begin (
 ,p_release=>'24.1.0'
 ,p_default_workspace_id=>21001755871501153
 ,p_default_application_id=>101
-,p_default_id_offset=>126025927202162884
+,p_default_id_offset=>81373851408253679
 ,p_default_owner=>'EDHU_OWNER'
 );
 end;
 /
  
-prompt APPLICATION 101 - Ebison
+prompt APPLICATION 101 - Framework
 --
 -- Application Export:
 --   Application:     101
---   Name:            Ebison
---   Date and Time:   14:44 Wednesday July 23, 2025
+--   Name:            Framework
+--   Date and Time:   11:35 Friday June 5, 2026
 --   Exported By:     DHANTSON
 --   Flashback:       0
 --   Export Type:     Component Export
 --   Manifest
---     PLUGIN: 146967741459361998
+--     PLUGIN: 293959625829744974
 --   Manifest End
 --   Version:         24.1.0
 --   Instance ID:     713483131485939
@@ -52,7 +52,7 @@ end;
 prompt --application/shared_components/plugins/dynamic_action/be_ebison_apex_jquery_mask
 begin
 wwv_flow_imp_shared.create_plugin(
- p_id=>wwv_flow_imp.id(146967741459361998)
+ p_id=>wwv_flow_imp.id(293959625829744974)
 ,p_plugin_type=>'DYNAMIC ACTION'
 ,p_name=>'BE.EBISON.APEX.JQUERY.MASK'
 ,p_display_name=>'APEX jQuery Mask'
@@ -64,19 +64,19 @@ wwv_flow_imp_shared.create_plugin(
 'BEGIN',
 '  ---------------------------------------  VENDOR  ---------------------------------------',
 '  apex_javascript.add_library(',
-'    p_name                    => ''jquery.mask.min'',       -- jquery.mask.min.js',
-unistr('    p_directory               => p_plugin.file_prefix    -- \2259 #PLUGIN_FILES#'),
+'    p_name        => ''jquery.mask.min'',       -- jquery.mask.min.js',
+unistr('    p_directory   => p_plugin.file_prefix     -- \2259 #PLUGIN_FILES#'),
 '  );',
 '',
 '  ---------------------------------------  PLUGIN  ---------------------------------------',
 '  apex_javascript.add_library(',
-'    p_name                    => ''apex.jquery.mask'',      -- apex.jquery.mask.js',
-unistr('    p_directory               => p_plugin.file_prefix    -- \2259 #PLUGIN_FILES#'),
+'    p_name        => ''apex.jquery.mask'',      -- apex.jquery.mask.js',
+unistr('    p_directory   => p_plugin.file_prefix     -- \2259 #PLUGIN_FILES#'),
 '  );',
 '',
 '  apex_css.add_file(',
-'    p_name       => ''apex.jquery.mask'',                   -- apex.jquery.mask.css',
-unistr('    p_directory  => p_plugin.file_prefix                 -- \2259 #PLUGIN_FILES#'),
+'    p_name       => ''apex.jquery.mask'',       -- apex.jquery.mask.css',
+unistr('    p_directory  => p_plugin.file_prefix      -- \2259 #PLUGIN_FILES#'),
 '  );',
 'END load_libraries;',
 '',
@@ -93,6 +93,10 @@ unistr('    p_directory  => p_plugin.file_prefix                 -- \2259 #PLUGI
 '  l_result.attribute_02 := p_dynamic_action.attribute_02; -- Set Reverse 1 or NULL',
 '  l_result.attribute_03 := p_dynamic_action.attribute_03; -- Set Clear if not matched 1 or NULL',
 '',
+'  l_result.attribute_04 := p_dynamic_action.attribute_04; -- Advanced Mode (Y or N)',
+'  l_result.attribute_05 := p_dynamic_action.attribute_05; -- Mask JS Expression',
+'  l_result.attribute_06 := p_dynamic_action.attribute_06; -- Additional Options JS Object',
+'',
 '  load_libraries(p_plugin);',
 '',
 '  l_result.javascript_function := ''apexJQueryMask.render'';',
@@ -107,15 +111,15 @@ unistr('    p_directory  => p_plugin.file_prefix                 -- \2259 #PLUGI
 ,p_render_function=>'render'
 ,p_standard_attributes=>'ITEM:JQUERY_SELECTOR:JAVASCRIPT_EXPRESSION:REQUIRED:ONLOAD'
 ,p_substitute_attributes=>true
-,p_version_scn=>2717433564136
+,p_version_scn=>2717772557782
 ,p_subscribe_plugin_settings=>true
 ,p_help_text=>'Documentation can be found here: https://igorescobar.github.io/jQuery-Mask-Plugin/docs.html'
 ,p_version_identifier=>'1.0'
-,p_files_version=>16
+,p_files_version=>22
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(146969198617289664)
-,p_plugin_id=>wwv_flow_imp.id(146967741459361998)
+ p_id=>wwv_flow_imp.id(293961082987672640)
+,p_plugin_id=>wwv_flow_imp.id(293959625829744974)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>1
 ,p_display_sequence=>10
@@ -123,6 +127,10 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_attribute_type=>'TEXT'
 ,p_is_required=>true
 ,p_is_translatable=>false
+,p_depending_on_attribute_id=>wwv_flow_imp.id(519673062492161069)
+,p_depending_on_has_to_exist=>true
+,p_depending_on_condition_type=>'NOT_EQUALS'
+,p_depending_on_expression=>'Y'
 ,p_examples=>wwv_flow_string.join(wwv_flow_t_varchar2(
 '00/00/0000',
 '00:00:00',
@@ -142,8 +150,8 @@ wwv_flow_imp_shared.create_plugin_attribute(
 '- #A: Any alphanumeric char recursive'))
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(146974627314208296)
-,p_plugin_id=>wwv_flow_imp.id(146967741459361998)
+ p_id=>wwv_flow_imp.id(293966511684591272)
+,p_plugin_id=>wwv_flow_imp.id(293959625829744974)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>2
 ,p_display_sequence=>20
@@ -154,15 +162,15 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_lov_type=>'STATIC'
 );
 wwv_flow_imp_shared.create_plugin_attr_value(
- p_id=>wwv_flow_imp.id(146975351737207601)
-,p_plugin_attribute_id=>wwv_flow_imp.id(146974627314208296)
+ p_id=>wwv_flow_imp.id(293967236107590577)
+,p_plugin_attribute_id=>wwv_flow_imp.id(293966511684591272)
 ,p_display_sequence=>10
 ,p_display_value=>' '
 ,p_return_value=>'1'
 );
 wwv_flow_imp_shared.create_plugin_attribute(
- p_id=>wwv_flow_imp.id(146976258499194482)
-,p_plugin_id=>wwv_flow_imp.id(146967741459361998)
+ p_id=>wwv_flow_imp.id(293968142869577458)
+,p_plugin_id=>wwv_flow_imp.id(293959625829744974)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>3
 ,p_display_sequence=>30
@@ -173,11 +181,61 @@ wwv_flow_imp_shared.create_plugin_attribute(
 ,p_lov_type=>'STATIC'
 );
 wwv_flow_imp_shared.create_plugin_attr_value(
- p_id=>wwv_flow_imp.id(146976970063194043)
-,p_plugin_attribute_id=>wwv_flow_imp.id(146976258499194482)
+ p_id=>wwv_flow_imp.id(293968854433577019)
+,p_plugin_attribute_id=>wwv_flow_imp.id(293968142869577458)
 ,p_display_sequence=>10
 ,p_display_value=>' '
 ,p_return_value=>'1'
+);
+wwv_flow_imp_shared.create_plugin_attribute(
+ p_id=>wwv_flow_imp.id(519673062492161069)
+,p_plugin_id=>wwv_flow_imp.id(293959625829744974)
+,p_attribute_scope=>'COMPONENT'
+,p_attribute_sequence=>4
+,p_display_sequence=>40
+,p_prompt=>'Advanced'
+,p_attribute_type=>'CHECKBOXES'
+,p_is_required=>false
+,p_default_value=>'N'
+,p_is_translatable=>false
+,p_lov_type=>'STATIC'
+);
+wwv_flow_imp_shared.create_plugin_attr_value(
+ p_id=>wwv_flow_imp.id(519674691579164086)
+,p_plugin_attribute_id=>wwv_flow_imp.id(519673062492161069)
+,p_display_sequence=>10
+,p_display_value=>' '
+,p_return_value=>'Y'
+);
+wwv_flow_imp_shared.create_plugin_attribute(
+ p_id=>wwv_flow_imp.id(519676314450171116)
+,p_plugin_id=>wwv_flow_imp.id(293959625829744974)
+,p_attribute_scope=>'COMPONENT'
+,p_attribute_sequence=>5
+,p_display_sequence=>50
+,p_prompt=>'Mask Function (JavaScript)'
+,p_attribute_type=>'JAVASCRIPT'
+,p_is_required=>true
+,p_is_translatable=>false
+,p_depending_on_attribute_id=>wwv_flow_imp.id(519673062492161069)
+,p_depending_on_has_to_exist=>true
+,p_depending_on_condition_type=>'EQUALS'
+,p_depending_on_expression=>'Y'
+);
+wwv_flow_imp_shared.create_plugin_attribute(
+ p_id=>wwv_flow_imp.id(519677626466175625)
+,p_plugin_id=>wwv_flow_imp.id(293959625829744974)
+,p_attribute_scope=>'COMPONENT'
+,p_attribute_sequence=>6
+,p_display_sequence=>60
+,p_prompt=>'Additional Options (JavaScript Object)'
+,p_attribute_type=>'JAVASCRIPT'
+,p_is_required=>false
+,p_is_translatable=>false
+,p_depending_on_attribute_id=>wwv_flow_imp.id(519673062492161069)
+,p_depending_on_has_to_exist=>true
+,p_depending_on_condition_type=>'EQUALS'
+,p_depending_on_expression=>'Y'
 );
 end;
 /
@@ -187,8 +245,8 @@ end;
 /
 begin
 wwv_flow_imp_shared.create_plugin_file(
- p_id=>wwv_flow_imp.id(146982572890952429)
-,p_plugin_id=>wwv_flow_imp.id(146967741459361998)
+ p_id=>wwv_flow_imp.id(293974457261335405)
+,p_plugin_id=>wwv_flow_imp.id(293959625829744974)
 ,p_file_name=>'apex.jquery.mask.css'
 ,p_mime_type=>'text/css'
 ,p_file_charset=>'utf-8'
@@ -198,20 +256,24 @@ end;
 /
 begin
 wwv_flow_imp.g_varchar2_table := wwv_flow_imp.empty_varchar2_table;
-wwv_flow_imp.g_varchar2_table(1) := '2866756E6374696F6E28652C74297B747970656F66206578706F7274733D3D226F626A656374222626747970656F66206D6F64756C653C2275223F74286578706F7274732C7265717569726528226A71756572792D6D61736B2D706C7567696E22292C72';
+wwv_flow_imp.g_varchar2_table(1) := '2866756E6374696F6E28742C61297B747970656F66206578706F7274733D3D226F626A656374222626747970656F66206D6F64756C653C2275223F61286578706F7274732C7265717569726528226A71756572792D6D61736B2D706C7567696E22292C72';
 wwv_flow_imp.g_varchar2_table(2) := '65717569726528226A717565727922292C726571756972652822617065782229293A747970656F6620646566696E653D3D2266756E6374696F6E222626646566696E652E616D643F646566696E65285B226578706F727473222C226A71756572792D6D61';
-wwv_flow_imp.g_varchar2_table(3) := '736B2D706C7567696E222C226A7175657279222C2261706578225D2C74293A28653D747970656F6620676C6F62616C546869733C2275223F676C6F62616C546869733A657C7C73656C662C7428652E617065784A51756572794D61736B3D7B7D29297D29';
-wwv_flow_imp.g_varchar2_table(4) := '28746869732C66756E6374696F6E2865297B2275736520737472696374223B76617220723B28723D77696E646F772E6170657829213D6E756C6C2626722E6A51756572797C7C2828293D3E7B7468726F77204572726F722822617065782E6A5175657279';
-wwv_flow_imp.g_varchar2_table(5) := '206F6E74627265656B7422297D2928293B66756E6374696F6E2074286E297B636F6E73747B6166666563746564456C656D656E74733A612C6D61736B3A752C726576657273653A732C636C65617249664E6F744D617463683A6F7D3D6E3B617065782E6A';
-wwv_flow_imp.g_varchar2_table(6) := '51756572792861292E6D61736B28752C7B726576657273653A732C636C65617249664E6F744D617463683A6F7D297D66756E6374696F6E206928297B74287B6166666563746564456C656D656E74733A746869732E6166666563746564456C656D656E74';
-wwv_flow_imp.g_varchar2_table(7) := '732C6D61736B3A746869732E616374696F6E2E61747472696275746530312C726576657273653A2121746869732E616374696F6E2E61747472696275746530322C636C65617249664E6F744D617463683A2121746869732E616374696F6E2E6174747269';
-wwv_flow_imp.g_varchar2_table(8) := '6275746530337D297D652E72656E6465723D692C4F626A6563742E646566696E6550726F706572747928652C53796D626F6C2E746F537472696E675461672C7B76616C75653A224D6F64756C65227D297D293B0A';
+wwv_flow_imp.g_varchar2_table(3) := '736B2D706C7567696E222C226A7175657279222C2261706578225D2C61293A28743D747970656F6620676C6F62616C546869733C2275223F676C6F62616C546869733A747C7C73656C662C6128742E617065784A51756572794D61736B3D7B7D29297D29';
+wwv_flow_imp.g_varchar2_table(4) := '28746869732C66756E6374696F6E2874297B2275736520737472696374223B766172206C3B636F6E737420613D28286C3D77696E646F772E61706578293D3D6E756C6C3F766F696420303A6C2E6A5175657279297C7C2828293D3E7B7468726F77204572';
+wwv_flow_imp.g_varchar2_table(5) := '726F722822617065782E6A5175657279206F6E74627265656B7422297D2928293B66756E6374696F6E20662875297B69662821752972657475726E3B636F6E737420693D752E7472696D28293B7472797B6966282F5E5B612D7A412D5A5F245D5B302D39';
+wwv_flow_imp.g_varchar2_table(6) := '612D7A412D5A5F242E5D2A242F2E74657374286929297B6C657420653D77696E646F773B636F6E737420733D692E73706C697428222E22293B666F72286C6574206E3D303B6E3C732E6C656E677468262628653D655B735B6E5D5D2C65213D3D766F6964';
+wwv_flow_imp.g_varchar2_table(7) := '2030293B6E2B2B293B69662865213D3D766F696420302972657475726E20657D72657475726E206E65772046756E6374696F6E282272657475726E20222B692928297D63617463682865297B72657475726E20617065782E64656275672E6572726F7228';
+wwv_flow_imp.g_varchar2_table(8) := '226A5175657279204D61736B20506C7567696E3A20466F75742062696A206576616C756572656E2076616E206578707265737369653A222C692C65292C6E756C6C7D7D66756E6374696F6E207028297B6C657420753D746869732E616374696F6E2E6174';
+wwv_flow_imp.g_varchar2_table(9) := '7472696275746530312C693D2121746869732E616374696F6E2E61747472696275746530322C653D2121746869732E616374696F6E2E61747472696275746530332C733D746869732E616374696F6E2E61747472696275746530343D3D3D2259222C6E3D';
+wwv_flow_imp.g_varchar2_table(10) := '746869732E616374696F6E2E61747472696275746530352C633D746869732E616374696F6E2E61747472696275746530362C643D752C6F3D7B726576657273653A692C636C65617249664E6F744D617463683A657D3B69662873297B6966286E297B636F';
+wwv_flow_imp.g_varchar2_table(11) := '6E737420723D66286E293B72262628643D72297D69662863297B636F6E737420723D662863293B722626747970656F6620723D3D226F626A656374222626286F3D4F626A6563742E61737369676E286F2C7229297D7D6128746869732E61666665637465';
+wwv_flow_imp.g_varchar2_table(12) := '64456C656D656E7473292E6D61736B28642C6F297D742E72656E6465723D702C4F626A6563742E646566696E6550726F706572747928742C53796D626F6C2E746F537472696E675461672C7B76616C75653A224D6F64756C65227D297D293B0A';
 end;
 /
 begin
 wwv_flow_imp_shared.create_plugin_file(
- p_id=>wwv_flow_imp.id(146982897697952428)
-,p_plugin_id=>wwv_flow_imp.id(146967741459361998)
+ p_id=>wwv_flow_imp.id(293974782068335404)
+,p_plugin_id=>wwv_flow_imp.id(293959625829744974)
 ,p_file_name=>'apex.jquery.mask.js'
 ,p_mime_type=>'text/javascript'
 ,p_file_charset=>'utf-8'
@@ -309,8 +371,8 @@ end;
 /
 begin
 wwv_flow_imp_shared.create_plugin_file(
- p_id=>wwv_flow_imp.id(146983279538952428)
-,p_plugin_id=>wwv_flow_imp.id(146967741459361998)
+ p_id=>wwv_flow_imp.id(293975163909335404)
+,p_plugin_id=>wwv_flow_imp.id(293959625829744974)
 ,p_file_name=>'jquery.mask.min.js'
 ,p_mime_type=>'text/javascript'
 ,p_file_charset=>'utf-8'
